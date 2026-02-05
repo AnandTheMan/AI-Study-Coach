@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo Oxford Examination System - Frontend
+echo AI Study Coach - Frontend
 echo ========================================
 echo.
 echo Starting Streamlit application...

@@ -57,7 +57,7 @@ def get_current_user(authorization: Optional[str] = Header(None), db: Session = 
 @app.get("/")
 def read_root():
     return {
-        "message": "Oxford Examination System API",
+        "message": "AI Study Coach API",
         "endpoints": {
             "auth": {
                 "signup": "/api/auth/signup",

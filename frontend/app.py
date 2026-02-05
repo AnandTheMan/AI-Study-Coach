@@ -29,7 +29,7 @@ def show_login_page():
         st.markdown("""
         <div style="text-align: center; padding: 40px 0 30px 0;">
             <h1 style="color: #0066cc; font-size: 48px; margin-bottom: 10px;">📚</h1>
-            <h1 style="color: #0066cc;">Oxford Examination System</h1>
+            <h1 style="color: #0066cc;">AI Study Coach</h1>
             <p style="color: #666; font-size: 18px;">Generate and evaluate examination papers with AI</p>
         </div>
         """, unsafe_allow_html=True)
@@ -114,7 +114,7 @@ def show_home_page():
     st.markdown(f"""
     <div style="text-align: center; padding: 20px 0 40px 0;">
         <h1 style="color: #0066cc;">Welcome, {st.session_state.user.get('full_name', 'User')}! 👋</h1>
-        <p style="color: #666; font-size: 20px;">Oxford Examination System Dashboard</p>
+        <p style="color: #666; font-size: 20px;">AI Study Coach Dashboard</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -251,6 +251,6 @@ else:
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: #666; padding: 20px 0;">
-    <p>Oxford Examination System © 2026 | Powered by AI</p>
+    <p>AI Study Coach © 2026 | Powered by AI</p>
 </div>
 """, unsafe_allow_html=True)

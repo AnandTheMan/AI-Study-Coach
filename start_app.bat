@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo Oxford Examination System
+echo AI Study Coach
 echo ========================================
 echo.
 

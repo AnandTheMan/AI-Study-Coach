@@ -21,7 +21,7 @@ def main():
         print("❌ Virtual environment not found. Please run setup first.")
         sys.exit(1)
     
-    print("🚀 Starting Oxford Examination System...")
+    print("🚀 Starting AI Study Coach...")
     print("=" * 50)
     
     # Start backend server

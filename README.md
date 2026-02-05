@@ -1,4 +1,4 @@
-# Oxford Examination System
+# AI Study Coach
 
 AI-powered examination paper generation and evaluation system with automatic grading and feedback.
 
