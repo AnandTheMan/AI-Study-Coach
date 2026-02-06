@@ -198,8 +198,19 @@ if st.session_state.get('view_paper') and st.session_state.get('selected_paper_i
                 st.rerun()
             
             if submit_btn:
-                # Filter out empty answers
-                filled_answers = [ans for ans in answers if ans["answer"] and str(ans["answer"]).strip()]
+                # Filter out empty answers and process MCQ answers
+                filled_answers = []
+                for ans in answers:
+                    if ans["answer"] and str(ans["answer"]).strip():
+                        answer_text = str(ans["answer"]).strip()
+                        # Extract just the letter for MCQ answers (e.g., "B. Option" -> "B")
+                        if answer_text and answer_text[0] in ['A', 'B', 'C', 'D', 'E', 'F']:
+                            # Get just the first letter if it's an MCQ
+                            answer_text = answer_text[0]
+                        filled_answers.append({
+                            "question_number": ans["question_number"],
+                            "answer": answer_text
+                        })
                 
                 if not filled_answers:
                     utils.display_error("Please provide at least one answer before submitting")

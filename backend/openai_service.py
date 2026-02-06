@@ -105,10 +105,32 @@ def evaluate_paper_with_ai(questions: list, student_answers: dict) -> dict:
         q_num = q["question_number"]
         student_ans = student_answers.get(q_num, "No answer provided")
         
-        evaluation_details.append(f"""
+        # For MCQs, extract just the letter from both student answer and correct answer
+        if q.get('question_type', '').upper() == 'MCQ':
+            # Extract letter from student answer (handle "A", "A.", "A)", "A. text", etc.)
+            if student_ans and student_ans != "No answer provided":
+                student_ans_letter = student_ans.strip()[0].upper() if student_ans.strip() else ""
+            else:
+                student_ans_letter = ""
+            
+            # Extract letter from correct answer
+            correct_ans = q['correct_answer']
+            if correct_ans:
+                correct_ans_letter = correct_ans.strip()[0].upper() if correct_ans.strip() else ""
+            else:
+                correct_ans_letter = ""
+            
+            evaluation_details.append(f"""
 Question {q_num} ({q['marks']} marks) - {q['question_type']}:
 Question: {q['question_text']}
-{f"Options: {', '.join(q.get('options', []))}" if q.get('options') else ""}
+Options: {', '.join(q.get('options', []))}
+Correct Answer: {correct_ans_letter}
+Student's Answer: {student_ans_letter}
+""")
+        else:
+            evaluation_details.append(f"""
+Question {q_num} ({q['marks']} marks) - {q['question_type']}:
+Question: {q['question_text']}
 Correct Answer: {q['correct_answer']}
 Student's Answer: {student_ans}
 """)

@@ -14,8 +14,8 @@ def main():
     backend_dir = base_dir / "backend"
     frontend_dir = base_dir / "frontend"
     
-    # Python executable from backend venv
-    python_exe = backend_dir / "venv" / "Scripts" / "python.exe"
+    # Python executable from root venv
+    python_exe = base_dir / "venv" / "Scripts" / "python.exe"
     
     if not python_exe.exists():
         print("❌ Virtual environment not found. Please run setup first.")
