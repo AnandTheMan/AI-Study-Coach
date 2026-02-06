@@ -10,89 +10,229 @@ AI-powered examination paper generation and evaluation system with automatic gra
 - 📊 **Dashboard**: Track progress with statistics and visualizations
 - 🔐 **Authentication**: Secure user accounts with JWT tokens
 
-## Quick Start
+## 🚀 Quick Setup (New System)
 
 ### Prerequisites
-- Python 3.11.9
-- OpenAI API key
+- Python 3.8 or higher
+- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
 
-### Installation
+### One-Command Setup
 
-1. **Install Backend Dependencies**
 ```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
+# Windows
+setup.bat
+
+# Or manually:
+python setup.py
 ```
 
-2. **Install Frontend Dependencies**
-```bash
-cd frontend
-pip install -r requirements.txt
-```
+This will:
+- ✓ Create virtual environment
+- ✓ Install all dependencies
+- ✓ Configure environment variables
+- ✓ Initialize database
+- ✓ Verify setup
 
-3. **Configure Environment Variables**
+### Start the Application
 
-Create `backend/.env`:
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-DATABASE_URL=sqlite:///./oxford_papers.db
-SECRET_KEY=your-secret-key-here
-```
-
-Create `frontend/.env`:
-```env
-API_BASE_URL=http://localhost:8000
-```
-
-### Running the Application
-
-#### Option 1: Unified Launcher (Recommended)
-
-Double-click `start_app.bat` or run:
 ```bash
 python start_app.py
 ```
 
-This starts both backend and frontend together!
+Access at: **http://localhost:8501**
 
-#### Option 2: Manual Start
+---
 
-**Terminal 1 - Backend:**
+## 📋 Manual Setup (If Needed)
+
+### 1. Install Dependencies
+
 ```bash
-cd backend
-venv\Scripts\activate
-python main.py
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+
+# Install requirements
+pip install -r requirements.txt
 ```
 
-**Terminal 2 - Frontend:**
+### 2. Configure Environment
+
+**Create `backend/.env`:**
+```env
+OPENAI_API_KEY=your_actual_api_key_here
+DATABASE_URL=sqlite:///./oxford_papers.db
+SECRET_KEY=your-secret-key-here
+```
+
+**Create `frontend/.env`:**
+```env
+API_BASE_URL=http://localhost:8000
+```
+
+### 3. Run Application
+
+**Option 1: Unified Start (Recommended)**
 ```bash
+python start_app.py
+```
+
+**Option 2: Manual Start**
+```bash
+# Terminal 1 - Backend
+cd backend
+python main.py
+
+# Terminal 2 - Frontend
 cd frontend
 streamlit run app.py
 ```
 
-### Access the Application
+---
 
-- **Frontend**: http://localhost:8501
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
+## 🔧 Troubleshooting on New System
 
-## Usage
+### Quick Diagnostic Check
 
-1. **Sign Up / Login**: Create an account or login
-2. **Generate Paper**: 
-   - Choose curriculum-based or document-based generation
-   - Fill in subject, chapter, grade details
-   - AI generates relevant questions
-3. **Solve Paper**: Answer questions directly on the page
-4. **Get Evaluation**: Submit for instant AI grading with feedback
-5. **View Results**: See your score, grade, correct answers, and detailed feedback
-6. **Save Papers**: All papers are automatically saved to "My Papers"
-7. **Attempt Later**: Access saved papers anytime from "My Papers" page
-8. **Track Progress**: View statistics and history on Dashboard
+Run this first to identify issues:
+```bash
+# Windows
+check_backend.bat
 
-## Project Structure
+# Or manually:
+cd backend
+python check_backend.py
+```
+
+This checks:
+- ✓ Python version
+- ✓ Dependencies installed
+- ✓ .env configuration
+- ✓ OpenAI API key
+- ✓ Database setup
+- ✓ Port availability
+
+### Common Issues
+
+#### 1. Backend Not Starting (ERR_INVALID_RESPONSE)
+
+**Symptoms:** Can't reach http://localhost:8000, frontend shows connection errors
+
+**Fixes:**
+```bash
+# Step 1: Check if dependencies are installed
+pip install -r requirements.txt
+
+# Step 2: Verify .env file exists
+cd backend
+# Create .env if missing and add:
+# OPENAI_API_KEY=sk-your-actual-key-here
+# DATABASE_URL=sqlite:///./oxford_papers.db
+# SECRET_KEY=your-secret-key
+
+# Step 3: Run diagnostics
+python check_backend.py
+
+# Step 4: Try starting backend
+python main.py
+```
+
+#### 2. "Extra data: line 1 column 4 (char 3)"
+
+**Cause:** Backend not responding or frontend can't connect
+
+**Fix:**
+1. Verify backend is running: Open http://localhost:8000/docs
+2. If not accessible, backend isn't running - see issue #1 above
+3. Check firewall isn't blocking port 8000
+
+#### 3. Missing OpenAI API Key
+
+**Error:** "OpenAI API Key not configured"
+
+**Fix:**
+1. Get key from https://platform.openai.com/api-keys
+2. Edit `backend/.env`:
+   ```env
+   OPENAI_API_KEY=sk-proj-your-actual-key-here
+   ```
+3. Restart backend
+
+#### 4. Import Errors
+
+**Error:** "ModuleNotFoundError: No module named 'fastapi'"
+
+**Fix:**
+```bash
+# Make sure you're in the project directory
+cd AI-Study-Coach
+
+# Activate virtual environment
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+
+# Install requirements
+pip install -r requirements.txt
+```
+
+#### 5. Port Already in Use
+
+**Error:** "Port 8000 is already in use"
+
+**Fix:**
+```bash
+# Windows: Find and kill process on port 8000
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
+
+# Or change port in backend/main.py:
+# uvicorn.run(app, host="0.0.0.0", port=8001)
+```
+
+### Setup on Brand New System
+
+**Complete setup from scratch:**
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/AnandTheMan/AI-Study-Coach.git
+   cd AI-Study-Coach
+   ```
+
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure Environment**
+   - Copy `backend/.env.example` to `backend/.env`
+   - Add your OpenAI API key
+   - Copy `frontend/.env.example` to `frontend/.env`
+
+5. **Run Diagnostics**
+   ```bash
+   cd backend
+   python check_backend.py
+   ```
+
+6. **Start Application**
+   ```bash
+   cd ..
+   python start_app.py
+   ```
+
+---
+
+## 📁 Project Structure
 
 ```
 Study/

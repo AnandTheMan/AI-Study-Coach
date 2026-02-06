@@ -570,4 +570,53 @@ async def get_all_evaluations(current_user: User = Depends(get_current_user), db
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import sys
+    from pathlib import Path
+    
+    print("=" * 60)
+    print("Starting AI Study Coach Backend API")
+    print("=" * 60)
+    
+    # Check for .env file
+    env_file = Path(__file__).parent / ".env"
+    if not env_file.exists():
+        print("\n❌ ERROR: .env file not found!")
+        print(f"   Expected location: {env_file}")
+        print("\nPlease create backend/.env with:")
+        print("   OPENAI_API_KEY=your_api_key_here")
+        print("   DATABASE_URL=sqlite:///./oxford_papers.db")
+        print("   SECRET_KEY=your-secret-key")
+        sys.exit(1)
+    
+    # Check OpenAI API Key
+    import config
+    if not config.OPENAI_API_KEY or config.OPENAI_API_KEY == "your_openai_api_key_here":
+        print("\n❌ ERROR: OpenAI API Key not configured!")
+        print("   Edit backend/.env and set OPENAI_API_KEY")
+        print("   Get your key from: https://platform.openai.com/api-keys")
+        sys.exit(1)
+    
+    print(f"\n✓ Environment configuration loaded")
+    print(f"✓ OpenAI API Key: {config.OPENAI_API_KEY[:20]}...")
+    print(f"✓ Database: {config.DATABASE_URL}")
+    
+    # Initialize database
+    try:
+        from database import init_db
+        init_db()
+        print(f"✓ Database initialized")
+    except Exception as e:
+        print(f"\n⚠️  Warning: Could not initialize database: {e}")
+        print("   Database will be created on first request")
+    
+    print(f"\n🚀 Starting server on http://0.0.0.0:8000")
+    print(f"📚 API Documentation: http://localhost:8000/docs")
+    print("=" * 60)
+    print()
+    
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    except Exception as e:
+        print(f"\n❌ ERROR: Failed to start server!")
+        print(f"   {str(e)}")
+        sys.exit(1)
