@@ -42,14 +42,6 @@ python start_app.py
 Access at: **http://localhost:8501**
 
 ---
-### Three-Command Setup 
-Input these commands in order into terminal
-
-1)   .\setup_venv.bat
-
-2)   venv\Scripts\activate
-
-3)   python test_installation.py
 
 ## 📋 Manual Setup (If Needed)
 
@@ -101,7 +93,7 @@ streamlit run app.py
 
 ---
 
-## 🔧 Troubleshooting on New System
+## Troubleshooting on New System
 
 ### Quick Diagnostic Check
 
@@ -240,7 +232,7 @@ taskkill /PID <PID> /F
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 Study/
