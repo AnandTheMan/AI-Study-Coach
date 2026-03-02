@@ -4,13 +4,13 @@ AI-powered examination paper generation and evaluation system with automatic gra
 
 ## Features
 
-- 📝 **Generate Papers**: Create examination papers from curriculum or uploaded documents
-- 📚 **My Papers**: Save and attempt papers later
-- ✅ **AI Evaluation**: Instant evaluation with detailed feedback and correct answers
-- 📊 **Dashboard**: Track progress with statistics and visualizations
-- 🔐 **Authentication**: Secure user accounts with JWT tokens
+-  **Generate Papers**: Create examination papers from curriculum or uploaded documents
+-  **My Papers**: Save and attempt papers later
+-  **AI Evaluation**: Instant evaluation with detailed feedback and correct answers
+-  **Dashboard**: Track progress with statistics and visualizations
+-  **Authentication**: Secure user accounts with JWT tokens
 
-## 🚀 Quick Setup (New System)
+##  Quick Setup (New System)
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -42,6 +42,14 @@ python start_app.py
 Access at: **http://localhost:8501**
 
 ---
+### Three-Command Setup 
+Input these commands in order into terminal
+
+1)   .\setup_venv.bat
+
+2)   venv\Scripts\activate
+
+3)   python test_installation.py
 
 ## 📋 Manual Setup (If Needed)
 
