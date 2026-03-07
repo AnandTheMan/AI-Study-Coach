@@ -1,6 +1,15 @@
 # AI Study Coach
 
-AI-powered examination paper generation and evaluation system with automatic grading and feedback.
+The AI Study Coach is a cloud-deployed adaptive study support system that generates exam-style papers, evaluates answers automatically using AI, and tracks user performance over time.
+
+The system follows a client–server architecture:
+
+- **Frontend:** Streamlit web application for user interaction
+- **Backend:** FastAPI REST API deployed on Render
+- **Database:** SQLite with SQLAlchemy ORM
+- **AI Services:** OpenAI API used for question generation and automated grading
+
+Frontend and backend communicate through authenticated HTTP requests using JWT tokens.
 
 ## Features
 
@@ -16,8 +25,18 @@ https://anand-ai-study-coach.streamlit.app/
 
 Then put in this email and password:
 Email: testerman123@gmail.com
+
 Password: testerman123
 
+Note: This is a demonstration account provided for project evaluation purposes.
+
+The backend of the AI Study Coach is deployed as a FastAPI REST service on the Render cloud platform:
+
+https://ai-study-coach-backend.onrender.com/
+
+When accessed directly, the API returns a JSON response listing the available endpoints for the system, including authentication, paper generation, automated evaluation, and dashboard analytics.
+
+The Streamlit frontend communicates with this backend using HTTP requests secured by JWT authentication tokens. The backend handles the core application logic such as generating examination papers using AI, evaluating submitted answers, storing papers in the database, and returning user performance statistics. Users do not need to interact with the backend API directly. To run and use the application, simply access the Streamlit frontend link provided above. The backend endpoint is included here for completeness and transparency regarding the system’s deployed architecture.
 
 ##  Project Structure
 
@@ -50,19 +69,19 @@ Study/
 ### Authentication
 - `POST /api/auth/signup` - Create new account
 - `POST /api/auth/login` - Login
+- `GET /api/auth/me` - Get current authenticated user details
 
 ### Papers
-- `GET /api/papers` - List user's papers
-- `GET /api/papers/{id}` - Get specific paper with questions
-- `POST /api/generate_paper` - Generate from curriculum
-- `POST /api/generate_paper_from_document` - Generate from document
+- `POST /api/generate_paper` - Generate examination paper from curriculum parameters
+- `POST /api/generate_paper_from_document` - Generate examination paper from uploaded document
+- `POST /api/generate_paper_from_media` - Generate examination paper from media input
+- `GET /api/papers/{paper_id}` - Get specific paper with questions
 
 ### Evaluation
-- `POST /api/evaluate_paper` - Evaluate answers
+- `POST /api/evaluate_paper` - Evaluate submitted answers for a paper
 
 ### Dashboard
-- `GET /api/dashboard` - Get user statistics
-
+- `GET /api/dashboard` - Get user statistics and performance analytics
 ## Technology Stack
 
 ### Backend
