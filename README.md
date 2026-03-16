@@ -28,7 +28,7 @@ Email: testerman123@gmail.com
 
 Password: testerman123
 
-Note: This is a demonstration account provided for project evaluation purposes. If for whatever reason, just sign up a fresh account with the above credentials, and it will work.
+Note: This is a demonstration account provided for project evaluation purposes. If for whatever reason it does not work, just sign up a fresh account with the above credentials, and it will work.
 
 The backend of the AI Study Coach is deployed as a FastAPI REST service on the Render cloud platform:
 
